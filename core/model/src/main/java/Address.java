@@ -1,5 +1,6 @@
 public class Address {
 
+	private int id;
 	private int streetNo;
 	private String barangay;
 	private String municipality;
@@ -10,6 +11,14 @@ public class Address {
 		this.barangay = barangay;
 		this.municipality = municipality;
 		this.zipCode = zipCode;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public void setStreetNo(int streetNo) {

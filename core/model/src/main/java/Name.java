@@ -1,5 +1,6 @@
 public class Name {
 
+	private int id;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -8,6 +9,14 @@ public class Name {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public void setFirstName(String firstName) {

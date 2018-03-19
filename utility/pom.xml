@@ -7,7 +7,7 @@
     <artifactId>hibernate-app</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>util</artifactId>
-  <name>util</name>
+  <artifactId>utility</artifactId>
+  <name>utility</name>
   <url>http://maven.apache.org</url>
  </project>

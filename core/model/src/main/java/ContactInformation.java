@@ -1,5 +1,6 @@
 public class ContactInformation {
 	
+	private int id;
 	private long landline;
 	private long mobileNumber;
 	private String email;
@@ -8,6 +9,14 @@ public class ContactInformation {
 		this.landline = landline;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public void setLandLine(long landline) {

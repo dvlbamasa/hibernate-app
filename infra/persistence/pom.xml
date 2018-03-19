@@ -17,6 +17,7 @@
         <directory>${basedir}/src/main/resources</directory>
         <includes>
           <include>hibernate.cfg.xml</include>
+          <include>Person.hbm.xml</include>
         </includes>
       </resource>
     </resources>
@@ -26,6 +27,16 @@
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>42.2.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.exist</groupId>
+      <artifactId>model</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>5.2.15.Final</version>
     </dependency>
   </dependencies>
  </project>

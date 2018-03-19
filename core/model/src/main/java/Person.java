@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.Set;
 
 public class Person {
 
@@ -10,10 +11,10 @@ public class Person {
 	private Date dateHired;
 	private boolean currentlyEmployed;
 	private ContactInformation contactInformation;
-	private Role role;
+	private Set roles;
 
 	public Person(int id, Name name, Address address, Date birthday, float gwa, 
-					Date dateHired, boolean currentlyEmployed, ContactInformation contactInformation, Role role) {
+					Date dateHired, boolean currentlyEmployed, ContactInformation contactInformation) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
@@ -22,8 +23,6 @@ public class Person {
 		this.dateHired = dateHired;
 		this.currentlyEmployed = currentlyEmployed;
 		this.contactInformation = contactInformation;
-		this.role = role;
-
 	}
 
 	public void setId(int id) {
@@ -90,13 +89,11 @@ public class Person {
 		return contactInformation;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRole(Set roles) {
+		this.roles = roles;
 	}
 
-	public Role getRole() {
-		return role;
-	}
-
-	
+	public Set getRole() {
+		return roles;
+	}	
 }
