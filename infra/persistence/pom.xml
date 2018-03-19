@@ -10,4 +10,22 @@
   <artifactId>persistence</artifactId>
   <name>persistence</name>
   <url>http://maven.apache.org</url>
+  <build>
+    <resources>
+      <resource>
+        <filtering>false</filtering>
+        <directory>${basedir}/src/main/resources</directory>
+        <includes>
+          <include>hibernate.cfg.xml</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.2</version>
+    </dependency>
+  </dependencies>
  </project>
