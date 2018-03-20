@@ -10,4 +10,11 @@
   <artifactId>utility</artifactId>
   <name>utility</name>
   <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>5.2.15.Final</version>
+    </dependency>
+  </dependencies>
  </project>

@@ -4,6 +4,9 @@ public class ContactInformation {
 	private long landline;
 	private long mobileNumber;
 	private String email;
+	private Person person;
+
+	public ContactInformation() {}
 
 	public ContactInformation(long landline, long mobileNumber, String email) {
 		this.landline = landline;
@@ -19,11 +22,11 @@ public class ContactInformation {
 		return id;
 	}
 
-	public void setLandLine(long landline) {
+	public void setLandline(long landline) {
 		this.landline = landline;
 	}
 
-	public long getLandLine() {
+	public long getLandline() {
 		return landline;
 	}
 
@@ -41,5 +44,13 @@ public class ContactInformation {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	public Person getPerson() {
+		return person;
 	}
 }

@@ -11,11 +11,12 @@ public class Person {
 	private Date dateHired;
 	private boolean currentlyEmployed;
 	private ContactInformation contactInformation;
-	private Set roles;
+	private Set<Role> roles;
 
-	public Person(int id, Name name, Address address, Date birthday, float gwa, 
+	public Person() {}
+	
+	public Person(Name name, Address address, Date birthday, float gwa, 
 					Date dateHired, boolean currentlyEmployed, ContactInformation contactInformation) {
-		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.birthday = birthday;
@@ -89,11 +90,11 @@ public class Person {
 		return contactInformation;
 	}
 
-	public void setRole(Set roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 
-	public Set getRole() {
+	public Set<Role> getRoles() {
 		return roles;
 	}	
 }

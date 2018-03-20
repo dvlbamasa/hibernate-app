@@ -1,8 +1,13 @@
+import java.util.Set;
+
 public class Role {
 
 	private int id;
 	private String name;
+	private Set<Person> persons;
 
+	public Role() {}
+	
 	public Role(String name) {
 		this.name = name;
 	}
@@ -21,6 +26,14 @@ public class Role {
 
 	public String getName() {
 		return name;
+	}
+
+	public void setPersons(Set<Person> persons) {
+		this.persons = persons;
+	}
+
+	public Set<Person> getPersons() {
+		return persons;
 	}
 
 	public boolean equals(Object obj) {
