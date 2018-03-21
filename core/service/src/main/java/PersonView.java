@@ -50,10 +50,15 @@ public class PersonView {
 					System.out.println("Wrong Index!");
 				}
 			}
+			/*
+			*	List Person
+			*/
 			else if (userInput == LIST_OPTIONS) {
-				Util.printListPersonOptions();
-
+				PersonListView.showPersonListView();
 			}
+			/*
+			*	Go Back
+			*/
 			else if (userInput == BACK) {
 				return;
 			}

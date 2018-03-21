@@ -48,6 +48,9 @@ public class ContactView {
 					System.out.println("Wrong Index!");
 				}	
 			}
+			/*
+			*	Go Back
+			*/
 			else if (userInput == BACK) {
 				return;
 			}
