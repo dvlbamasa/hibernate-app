@@ -13,7 +13,7 @@ public class Util {
 							"\n1. Person" +
 							"\n2. Role" +
 							"\n3. Contact Information" +
-							"\n4. Exit App" +
+							"\n0. Exit App" +
 							"\nEnter your choice: ");
 	}
 
@@ -23,6 +23,7 @@ public class Util {
 							"\n2. Delete Person" +
 							"\n3. Update Person" +
 							"\n4. List Person" +
+							"\n5. Back" +
 							"\nEnter your choice: ");
 	}
 
@@ -31,6 +32,7 @@ public class Util {
 							"\n1. GWA" +
 							"\n2. Date Hired" +
 							"\n3. Last Name" +
+							"\n4. Back" +
 							"\nEnter your choice: ");
 	}
 
@@ -40,8 +42,9 @@ public class Util {
 							"\n2. Update Role" +
 							"\n3. Delete Role" +
 							"\n4. List Role" +
-							"\n5. Add Person to a Role" +
-							"\n6. Delete Person from a Role" +
+							"\n5. Add Person Role" +
+							"\n6. Delete Person Role" +
+							"\n7. Back" +
 							"\nEnter your choice: ");
 	}
 
@@ -49,6 +52,8 @@ public class Util {
 		System.out.print("Contact Functionalities: " +
 							"\n1. Add Contact" +
 							"\n2. Update Contact" +
-							"\n3. Delete Contact");
+							"\n3. Delete Contact" +
+							"\n4. Back" +
+							"\nEnter your choice: ");
 	}
 }

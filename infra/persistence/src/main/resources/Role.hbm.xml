@@ -17,7 +17,8 @@
       
       <property name = "name" column = "name" type = "string"/>
 
-      <set name = "persons" cascade="save-update" table="person_role">
+      <set name = "persons" cascade="save-update, merge" fetch = "join" lazy = "false" 
+         table="person_role">
          <key column = "role_id"/>
          <many-to-many column = "person_id" class="Person"/>
       </set>

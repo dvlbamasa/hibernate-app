@@ -16,14 +16,13 @@ public class Person {
 	public Person() {}
 	
 	public Person(Name name, Address address, Date birthday, float gwa, 
-					Date dateHired, boolean currentlyEmployed, ContactInformation contactInformation) {
+					Date dateHired, boolean currentlyEmployed) {
 		this.name = name;
 		this.address = address;
 		this.birthday = birthday;
 		this.gwa = gwa;
 		this.dateHired = dateHired;
 		this.currentlyEmployed = currentlyEmployed;
-		this.contactInformation = contactInformation;
 	}
 
 	public void setId(int id) {
