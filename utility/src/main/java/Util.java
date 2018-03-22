@@ -1,7 +1,7 @@
 public class Util {
 	
 	public static void printStartScreen() {
-		System.out.println("*****	Welcome to the Simple Hibernate App!	*****");
+		System.out.println("\n\n*****	Welcome to the Simple Hibernate App!	*****");
 	}
 
 	public static void printDBEmpty() {
@@ -9,7 +9,7 @@ public class Util {
 	}
 
 	public static void printMenu() {
-		System.out.print("Choose the entity that you want to modify:" +
+		System.out.print("\n\nChoose the entity that you want to modify:" +
 							"\n1. Person" +
 							"\n2. Role" +
 							"\n3. Contact Information" +

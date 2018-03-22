@@ -7,23 +7,18 @@
 
    <class name = "Role" table = "role">
       
-      <meta attribute = "class-description">
-         This class contains the Role records. 
-      </meta>
-      
       <id name = "id" type = "int" column = "id">
          <generator class="native"/>
       </id>
       
       <property name = "name" column = "name" type = "string"/>
 
-      <set name = "persons" cascade="save-update, merge" fetch = "join" lazy = "false" 
+      <set name = "persons" inverse="true" lazy="false" fetch="select"
          table="person_role">
          <key column = "role_id"/>
          <many-to-many column = "person_id" class="Person"/>
       </set>
       
    </class>
-
 
 </hibernate-mapping>

@@ -18,7 +18,18 @@ public class ContactView {
 			*	Create a new Contact Information
 			*/
 			if (userInput == CREATE_CONTACT) {
-				Service.getContactInput(false, null);
+				System.out.print("Enter the index of the Person associated with this contact information: ");
+				int personIndex = scanner.nextInt();
+				scanner.nextLine();
+				Person person = (Person)Dao.get(personIndex, "Person");
+				if (person != null) {
+					Service.getContactInput(false, person);
+					System.out.println("Successfully created a new contact information!");
+				}
+				else {
+					System.out.println("Wrong index!");
+				}
+				
 			}
 			/*
 			*	Update a Contact Information
@@ -27,8 +38,10 @@ public class ContactView {
 				System.out.print("Enter the index of the Contact Information: ");
 				contactIndex = scanner.nextInt();
 				scanner.nextLine();
-				if (Dao.get(contactIndex, "ContactInformation") != null) {
-					Dao.update(Service.getContactInput(true, (ContactInformation)Dao.get(contactIndex, "ContactInformation")));
+				ContactInformation contactInformation = (ContactInformation) Dao.get(contactIndex, "ContactInformation");
+				if (contactInformation != null) {
+					Dao.update(Service.getContactInput(true, contactInformation));
+					System.out.println("Successfully updated a contact information!");
 				}
 				else {
 					System.out.println("Wrong Index!");
@@ -41,8 +54,15 @@ public class ContactView {
 				System.out.print("Enter the index of the Contact Information: ");
 				contactIndex = scanner.nextInt();
 				scanner.nextLine();
-				if (Dao.get(contactIndex, "ContactInformation") != null) {
-					Dao.delete((ContactInformation)Dao.get(contactIndex, "ContactInformation"));
+				ContactInformation contactInformation = (ContactInformation) Dao.get(contactIndex, "ContactInformation");
+				if (contactInformation != null) {
+					Person person = contactInformation.getPerson();
+					ContactInformation newContactInformation = new ContactInformation("", "", "");
+					Dao.delete(contactInformation);
+					newContactInformation.setPerson(person);
+					person.setContactInformation(newContactInformation);
+					Dao.update(person);
+					System.out.println("Successfully deleted a contact information!");
 				}
 				else {
 					System.out.println("Wrong Index!");

@@ -15,8 +15,8 @@ CREATE TABLE address (
 
 CREATE TABLE contact_information (
 	id INT PRIMARY KEY NOT NULL,
-	landline BIGINT NOT NULL,
-	mobile_number BIGINT NOT NULL,
+	landline CHAR(20) NOT NULL,
+	mobile_number CHAR(20) NOT NULL,
 	email CHAR(30) NOT NULL
 );
 
@@ -57,7 +57,8 @@ ALTER TABLE person
 ALTER TABLE person_role 
        add CONSTRAINT FKs7asxi8amiwjjq1sonlc4rihn 
        FOREIGN KEY (role_id) 
-       REFERENCES role;
+       REFERENCES role
+       ON DELETE CASCADE;
 
 
 ALTER TABLE person_role 

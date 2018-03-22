@@ -1,4 +1,7 @@
 import java.util.Scanner;
+import java.util.Collections;  
+import java.util.List;  
+import java.util.ArrayList;
 
 public class PersonListView {
 	
@@ -15,23 +18,28 @@ public class PersonListView {
 			int userInput = scanner.nextInt();
 			scanner.nextLine();
 			/*
-			*	Create a new Person
+			*	List Person Order by GWA
 			*/
 			if (userInput == GWA) {
-
+				List<Person> persons = (List<Person>) Dao.getList("Person");
+				Collections.sort(persons, (person1, person2) -> {
+					return Float.compare(person1.getGwa(), person2.getGwa());
+				});
+				printOrderedList(persons, "GWA");
 			}
 			/*
-			*	Delete a Person
+			*	List Person Order by Date Hired
 			*/
 			else if (userInput == DATE_HIRED) {
-
+				List<Person> persons = (List<Person>) Dao.getOrderedList("Person", "date_hired");
+				printOrderedList(persons, "Date Hired");
 			}
-
 			/*
-			*	Update a Person
+			*	List Person Order by Last Name
 			*/
 			else if (userInput == LAST_NAME) {
-
+				List<Person> persons = (List<Person>) Dao.getOrderedList("Person", "last_name");
+				printOrderedList(persons, "Last Name");
 			}
 			/*
 			*	Go back
@@ -45,6 +53,39 @@ public class PersonListView {
 		} catch (java.util.InputMismatchException e) {
 				System.out.println("***Wrong input choice!");
 				scanner.nextLine();
+		}
+	}
+
+	private static void printOrderedList(List<Person> persons, String order) {
+		if (persons.isEmpty()) {
+			System.out.println("The person list is empty!");
+		}
+		else {
+			for(Person person : persons) {
+				System.out.println("\n\n*********\tList of Persons Ordered by " + order + "\t***********" +
+									"\nId: " + person.getId()+
+									"\nName- " + 
+									"\n\tFirst Name: " + person.getName().getFirstName() + 
+									"\n\tMiddle Name: " + person.getName().getMiddleName() + 
+									"\n\tLast Name: " + person.getName().getLastName() +
+									"\nAddress- " + 
+									"\n\tStreet Number: " + person.getAddress().getStreetNo() + 
+									"\n\tBarangay: " + person.getAddress().getBarangay() + 
+									"\n\tMuncipality/City: " + person.getAddress().getMunicipality() +
+									"\nBirthday: " + person.getBirthday() +
+									"\nGWA: " + person.getGwa() +
+									"\nDate Hired: " + person.getDateHired() +
+									"\nCurrently Employed: " + (person.getCurrentlyEmployed() ? "Yes" : "No") +
+									"\nContact Information -" +
+									"\n\tLandline: " + person.getContactInformation().getLandline() +
+									"\n\tMobile Number: " + person.getContactInformation().getMobileNumber() +
+									"\n\tEmail Address: " + person.getContactInformation().getEmail());	
+				List<Role> roles = new ArrayList<Role>(person.getRoles());
+				System.out.print("\nRoles: ");
+				roles.forEach(
+					(role) -> System.out.print(role.getName().trim() + " "));	
+			}
+		
 		}
 	}
 }

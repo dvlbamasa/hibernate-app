@@ -25,6 +25,7 @@ public class RoleView {
 			*/
 			if (userInput == CREATE_ROLE) {
 				Dao.create(Service.getRoleInput(false, null));
+				System.out.println("Successfully created a new Role!");
 			}
 			/*
 			*	Update a Role
@@ -33,8 +34,10 @@ public class RoleView {
 				System.out.print("Enter the index of the Role: ");
 				roleIndex = scanner.nextInt();
 				scanner.nextLine();
-				if (Dao.get(roleIndex, "Role") != null) {
-					Dao.update(Service.getRoleInput(true, (Role)Dao.get(roleIndex, "Role")));
+				Role role = (Role) Dao.get(roleIndex, "Role");
+				if (role != null) {
+					Dao.update(Service.getRoleInput(true, role));
+					System.out.println("Successfully updated a Role!");
 				}
 				else {
 					System.out.println("Wrong Index!");
@@ -47,8 +50,10 @@ public class RoleView {
 				System.out.print("Enter the index of the Role: ");
 				roleIndex = scanner.nextInt();
 				scanner.nextLine();
-				if (Dao.get(roleIndex, "Role") != null) {
-					Dao.delete((Role)Dao.get(roleIndex, "Role"));
+				Role role = (Role) Dao.get(roleIndex, "Role");
+				if (role != null) {
+					Dao.delete(role);
+					System.out.println("Successfully deleted a Role!");
 				}
 				else {
 					System.out.println("Wrong Index!");
@@ -58,9 +63,15 @@ public class RoleView {
 			*	List all the Roles
 			*/
 			else if (userInput == LIST_ROLE) {
-				List roles = Dao.getList("Role");
-				roles.forEach(
-					(role) -> System.out.println("Role name: " + ((Role)role).getName() + " Role id: " + ((Role)role).getId()));
+				List<Role> roles = (List<Role>) Dao.getList("Role");
+				System.out.println("********\t List of Roles \t*********");
+				if(roles.isEmpty()) {
+					System.out.println("There are no roles.");
+				}
+				else {
+					roles.forEach(
+					(role) -> System.out.println("Role name: " + role.getName() + " Role id: " + role.getId()));
+				}
 			}
 			/*
 			*	Add a role to a Person
@@ -77,6 +88,7 @@ public class RoleView {
 				Person person = (Person)Dao.get(personIndex, "Person");
 				person.getRoles().add(newRole);
 				Dao.update(person);
+				System.out.println("Successfully added a role to a person!");
 			}
 			/*
 			*	Remove a role from a Person
@@ -97,11 +109,11 @@ public class RoleView {
 			    while(iterator.hasNext()) {
 			        Role setRole = iterator.next();
 			        if(setRole.equals(newRole)) {
-			        	System.out.print("asdasdadasd");
 			            iterator.remove();
 			        }
 			    }
 				Dao.update(person);
+				System.out.println("Successfully removed a role from a person!");
 			}
 			/*
 			*	Go Back

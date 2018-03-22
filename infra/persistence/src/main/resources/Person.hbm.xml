@@ -6,10 +6,6 @@
 <hibernate-mapping>
    <class name = "Person" table = "person">
       
-      <meta attribute = "class-description">
-         This class contains the Person detail. 
-      </meta>
-      
       <id name = "id" type = "int" column = "id">
          <generator class="native"/>
       </id>
@@ -22,8 +18,8 @@
       </component>
 
       <!--Many-to-One-->
-      <many-to-one name = "address" column = "address" 
-         class="Address" not-null="true"/>
+      <many-to-one name = "address" column = "address" cascade="save-update" 
+         fetch = "join" lazy = "false" class="Address" not-null="true"/>
 
       <property name = "birthday" column = "birthday" type = "date"/>
       <property name = "gwa" column = "gwa" type = "float"/>
@@ -32,10 +28,10 @@
 
       <!--One-to-One-->
       <one-to-one name="contactInformation" class="ContactInformation"
-         cascade="save-update"></one-to-one>
+         cascade="delete-orphan, save-update" fetch = "join" lazy = "false"></one-to-one>
 
       <!--Many-to-Many-->
-      <set name = "roles" cascade="merge, save-update" fetch = "join" lazy = "false" 
+      <set name = "roles" inverse="false" lazy="false" fetch="select" cascade="save-update"
          table="person_role">
          <key column = "person_id"/>
          <many-to-many column = "role_id" class="Role"/>
@@ -44,10 +40,6 @@
 
    <class name = "Address" table="address">
          
-      <meta attribute = "class-description">
-         This class contains the Address detail. 
-      </meta>
-      
       <id name = "id" type = "int" column = "id">
          <generator class="native"/>
       </id>

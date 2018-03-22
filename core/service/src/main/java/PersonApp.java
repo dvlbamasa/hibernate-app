@@ -13,7 +13,6 @@ public class PersonApp {
 	}
 
 	public void startApp() {
-		Util.printStartScreen();
 		if(Dao.isDBEmpty()) {
 			Util.printDBEmpty();
 			insertInitialInput();
@@ -32,6 +31,7 @@ public class PersonApp {
 		int userInput = -1;
 		while (userInput != EXIT) {
 			try {
+				Util.printStartScreen();
 				Util.printMenu();
 				userInput = scanner.nextInt();
 				scanner.nextLine();
@@ -45,7 +45,7 @@ public class PersonApp {
 					ContactView.showContactView();
 				}
 				else if (userInput == EXIT) {
-					System.exit(0);
+					System.out.println("Terminating Application...");
 				}
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("***Wrong input choice!");

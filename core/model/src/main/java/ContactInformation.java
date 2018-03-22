@@ -1,14 +1,14 @@
 public class ContactInformation {
 	
 	private int id;
-	private long landline;
-	private long mobileNumber;
+	private String landline;
+	private String mobileNumber;
 	private String email;
 	private Person person;
 
 	public ContactInformation() {}
 
-	public ContactInformation(long landline, long mobileNumber, String email) {
+	public ContactInformation(String landline, String mobileNumber, String email) {
 		this.landline = landline;
 		this.mobileNumber = mobileNumber;
 		this.email = email;
@@ -22,19 +22,19 @@ public class ContactInformation {
 		return id;
 	}
 
-	public void setLandline(long landline) {
+	public void setLandline(String landline) {
 		this.landline = landline;
 	}
 
-	public long getLandline() {
+	public String getLandline() {
 		return landline;
 	}
 
-	public void setMobileNumber(long mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public long getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
 

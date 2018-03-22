@@ -109,4 +109,18 @@ public class Dao {
 		}
 		return results;
   	}
+
+  	public static List getOrderedList(String object, String order) {
+  		Session session = HibernateSession.getSession();
+  		List results = null;
+  		try {
+			Query query = session.createQuery("from " + object + " ORDER BY " + order + " ASC");
+			results = query.list();
+		} catch (HibernateException e) {
+			e.printStackTrace(); 
+		} finally {
+			session.close();
+		}
+		return results;
+  	}
 }

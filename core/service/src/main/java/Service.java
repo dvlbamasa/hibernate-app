@@ -22,8 +22,8 @@ public class Service {
 		float gwa;
 		String dateHired;
 		int currentlyEmployed;
-		long landline;
-		long mobileNumber;
+		String landline;
+		String mobileNumber;
 		String email;
 		String roleName;
 		Set<Role> roles = new HashSet<Role>();
@@ -44,7 +44,7 @@ public class Service {
 			System.out.print("Enter the gwa: ");
 			gwa = scanner.nextFloat();
 			scanner.nextLine();
-			System.out.print("Enter the date hired: ");
+			System.out.print("Enter the date hired (MM-dd-YYYY): ");
 			dateHired = scanner.nextLine();
 			System.out.print("Enter 1 if currently employed or 2 if not: ");
 			currentlyEmployed = scanner.nextInt();
@@ -62,15 +62,13 @@ public class Service {
 			scanner.nextLine();
 
 			System.out.print("The following entries are for the contact information.\nEnter the landline: ");
-			landline = scanner.nextLong();
-			scanner.nextLine();
+			landline = scanner.nextLine();
 			System.out.print("Enter the mobile number: ");
-			mobileNumber = scanner.nextLong();
-			scanner.nextLine();
+			mobileNumber = scanner.nextLine();
 			System.out.print("Enter the email: ");
 			email = scanner.nextLine();
 
-			System.out.print("Enter the role: ");
+			System.out.print("Enter the name of role: ");
 			roleName = scanner.nextLine();
 			
 			Address personAddress = new Address(streetNo, barangay, municipality, zipCode);
@@ -113,7 +111,7 @@ public class Service {
 
 	public static Role getRoleInput(boolean update, Role roleToUpdate) {
 		String roleName;
-		System.out.print("Enter the name role: ");
+		System.out.print("Enter the new name of the role: ");
 		roleName = scanner.nextLine();
 		if (update) {
 			roleToUpdate.setName(roleName);
@@ -121,37 +119,36 @@ public class Service {
 		return update ? roleToUpdate : new Role(roleName);
 	}
 
-	public static ContactInformation getContactInput(boolean update, ContactInformation contactToUpdate) {
+	public static <T> ContactInformation getContactInput(boolean update, final T object) {
 		ContactInformation contactInformation = null;
-		long landline;
-		long mobileNumber;
+		Person person = null;
+		String landline;
+		String mobileNumber;
 		String email;
 		int index;
 
-		System.out.print("The following entries are for the contact information.\nEnter the landline: ");
-		landline = scanner.nextLong();
-		System.out.print("Enter the mobile number: ");
-		mobileNumber = scanner.nextLong();
-		scanner.nextLine();
-		System.out.print("Enter the email: ");
+		System.out.print("\nThe following entries are for the contact information.\nEnter the new landline: ");
+		landline = scanner.nextLine();
+		System.out.print("Enter the new mobile number: ");
+		mobileNumber = scanner.nextLine();
+		System.out.print("Enter the new email: ");
 		email = scanner.nextLine();
 
-		contactInformation = new ContactInformation(landline, mobileNumber, email);
-
 		if (!update) {
-			System.out.print("Enter the index of the Person associated with this contact information: ");
-			index = scanner.nextInt();
-			Person person = (Person)Dao.get(index, "Person");
-			contactInformation.setPerson(person);
-			person.setContactInformation(contactInformation);
-			Dao.update(person);
+			person = (Person) object;
+			person.getContactInformation().setLandline(landline);
+			person.getContactInformation().setMobileNumber(mobileNumber);
+			person.getContactInformation().setEmail(email);
+			person.getContactInformation().setPerson(person);
+			Dao.update(object);
 		}
 		else {
-			contactToUpdate.setLandline(landline);
-			contactToUpdate.setMobileNumber(mobileNumber);
-			contactToUpdate.setEmail(email);	
+			contactInformation = (ContactInformation) object;
+			contactInformation.setLandline(landline);
+			contactInformation.setMobileNumber(mobileNumber);
+			contactInformation.setEmail(email);	
 		}
 
-		return update ? contactToUpdate : contactInformation;
+		return contactInformation;
 	}
 }
