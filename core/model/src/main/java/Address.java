@@ -1,3 +1,5 @@
+import java.util.Set;
+
 public class Address {
 
 	private int id;
@@ -5,6 +7,7 @@ public class Address {
 	private String barangay;
 	private String municipality;
 	private int zipCode;
+	private Set<Person> persons;
 
 	public Address() {}
 
@@ -53,5 +56,13 @@ public class Address {
 
 	public int getZipCode() {
 		return zipCode;
+	}
+
+	public void setPersons(Set<Person> persons) {
+		this.persons = persons;
+	}
+
+	public Set<Person> getPersons() {
+		return persons;
 	}
 }

@@ -19,7 +19,7 @@
 
       <!--Many-to-One-->
       <many-to-one name = "address" column = "address" cascade="save-update" 
-         fetch = "join" lazy = "false" class="Address" not-null="true"/>
+         lazy = "false" class="Address" not-null="true"/>
 
       <property name = "birthday" column = "birthday" type = "date"/>
       <property name = "gwa" column = "gwa" type = "float"/>
@@ -28,10 +28,10 @@
 
       <!--One-to-One-->
       <one-to-one name="contactInformation" class="ContactInformation"
-         cascade="delete-orphan, save-update" fetch = "join" lazy = "false"></one-to-one>
+         cascade="delete, save-update" lazy = "false"></one-to-one>
 
       <!--Many-to-Many-->
-      <set name = "roles" inverse="false" lazy="false" fetch="select" cascade="save-update"
+      <set name = "roles" inverse="false" lazy="false" cascade="save-update"
          table="person_role">
          <key column = "person_id"/>
          <many-to-many column = "role_id" class="Role"/>

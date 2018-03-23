@@ -23,11 +23,16 @@ public class ContactView {
 				scanner.nextLine();
 				Person person = (Person)Dao.get(personIndex, "Person");
 				if (person != null) {
-					Service.getContactInput(false, person);
-					System.out.println("Successfully created a new contact information!");
+					if (person.getContactInformation() != null) {
+						System.out.println("\n\n*****\tThe person has a contact information already!");
+					}
+					else {
+						Service.getContactInput(false, person);
+						System.out.println("\n\n*****\tSuccessfully created a new contact information!");	
+					}
 				}
 				else {
-					System.out.println("Wrong index!");
+					System.out.println("\n\n*****\tWrong index!");
 				}
 				
 			}
@@ -41,10 +46,10 @@ public class ContactView {
 				ContactInformation contactInformation = (ContactInformation) Dao.get(contactIndex, "ContactInformation");
 				if (contactInformation != null) {
 					Dao.update(Service.getContactInput(true, contactInformation));
-					System.out.println("Successfully updated a contact information!");
+					System.out.println("\n\n*****\tSuccessfully updated a contact information!");
 				}
 				else {
-					System.out.println("Wrong Index!");
+					System.out.println("\n\n*****\tWrong Index!");
 				}	
 			}
 			/*
@@ -57,15 +62,12 @@ public class ContactView {
 				ContactInformation contactInformation = (ContactInformation) Dao.get(contactIndex, "ContactInformation");
 				if (contactInformation != null) {
 					Person person = contactInformation.getPerson();
-					ContactInformation newContactInformation = new ContactInformation("", "", "");
 					Dao.delete(contactInformation);
-					newContactInformation.setPerson(person);
-					person.setContactInformation(newContactInformation);
-					Dao.update(person);
-					System.out.println("Successfully deleted a contact information!");
+					person.setContactInformation(null);
+					System.out.println("\n\n*****\tSuccessfully deleted a contact information!");
 				}
 				else {
-					System.out.println("Wrong Index!");
+					System.out.println("\n\n*****\tWrong Index!");
 				}	
 			}
 			/*

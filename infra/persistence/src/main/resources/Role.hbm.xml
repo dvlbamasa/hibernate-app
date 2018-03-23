@@ -13,7 +13,7 @@
       
       <property name = "name" column = "name" type = "string"/>
 
-      <set name = "persons" inverse="true" lazy="false" fetch="select"
+      <set name = "persons" inverse="true" lazy="false"
          table="person_role">
          <key column = "role_id"/>
          <many-to-many column = "person_id" class="Person"/>

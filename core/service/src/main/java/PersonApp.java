@@ -25,6 +25,7 @@ public class PersonApp {
 
 	public void insertInitialInput() {
 		Dao.create(Service.getPersonInput(false, null));
+		System.out.println("\n\n*****\tSuccessfully created a new Person!");
 	}
 
 	public void showMenu() {
@@ -46,6 +47,9 @@ public class PersonApp {
 				}
 				else if (userInput == EXIT) {
 					System.out.println("Terminating Application...");
+				}
+				else {
+					System.out.println("***Wrong input choice!");
 				}
 			} catch (java.util.InputMismatchException e) {
 				System.out.println("***Wrong input choice!");

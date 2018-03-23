@@ -28,7 +28,7 @@ public class Dao {
       	}
   	}
 
-  	public static <PK extends Serializable> Object get(PK id, String object) {
+  	public static Object get(int id, String object) {
   		Session session = HibernateSession.getSession();
   		Object resultObject = null;
   		try {

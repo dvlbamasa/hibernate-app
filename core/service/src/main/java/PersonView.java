@@ -20,7 +20,7 @@ public class PersonView {
 			*/
 			if (userInput == CREATE_PERSON) {
 				Dao.create(Service.getPersonInput(false, null));
-				System.out.println("Successfully created a new Person!");
+				System.out.println("\n\n*****\tSuccessfully created a new Person!");
 			}
 			/*
 			*	Delete a Person
@@ -32,10 +32,10 @@ public class PersonView {
 				Person person = (Person) Dao.get(personIndex, "Person");
 				if (person != null) {
 					Dao.delete(person);
-					System.out.println("Successfully deleted a Person!");
+					System.out.println("\n\n*****\tSuccessfully deleted a Person!");
 				}
 				else {
-					System.out.println("Wrong Index!");
+					System.out.println("\n\n*****\tWrong Index!");
 				}
 			}
 			/*
@@ -48,10 +48,10 @@ public class PersonView {
 				Person person = (Person) Dao.get(personIndex, "Person");
 				if (person != null) {
 					Dao.update(Service.getPersonInput(true, person));
-					System.out.println("Successfully updated a Person!");
+					System.out.println("\n\n*****\tSuccessfully updated a Person!");
 				}
 				else {
-					System.out.println("Wrong Index!");
+					System.out.println("\n\n*****\tWrong Index!");
 				}
 			}
 			/*

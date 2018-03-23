@@ -7,21 +7,21 @@ import java.util.Locale;
 
 public class Service {
 	
-	private static Scanner scanner = new Scanner(System.in);
+	private static Scanner scanner = new Scanner(System.in).useDelimiter("\n");
 	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy", Locale.ENGLISH);
 	
 	public static Person getPersonInput(boolean update, Person personToUpdate) {
 		String firstName;
 		String middleName;
 		String lastName;
-		int streetNo;
+		int streetNo = 0;
 		String barangay;
 		String municipality;
-		int zipCode;
-		String birthday;
-		float gwa;
-		String dateHired;
-		int currentlyEmployed;
+		int zipCode = 0;
+		String birthday = "";
+		float gwa = 0;
+		String dateHired = "";
+		int currentlyEmployed = 0;
 		String landline;
 		String mobileNumber;
 		String email;
@@ -29,6 +29,7 @@ public class Service {
 		Set<Role> roles = new HashSet<Role>();
 		Set<Person> persons = new HashSet<Person>();
 		Person person = null;
+		boolean invalid = true;
 		try {
 			System.out.print("Enter the first name: ");
 			firstName = scanner.nextLine();
@@ -39,27 +40,86 @@ public class Service {
 
 			Name personName = new Name(firstName, middleName, lastName);
 
-			System.out.print("Enter the birthday (MM-dd-YYYY): ");
-			birthday = scanner.nextLine();
-			System.out.print("Enter the gwa: ");
-			gwa = scanner.nextFloat();
-			scanner.nextLine();
-			System.out.print("Enter the date hired (MM-dd-YYYY): ");
-			dateHired = scanner.nextLine();
-			System.out.print("Enter 1 if currently employed or 2 if not: ");
-			currentlyEmployed = scanner.nextInt();
-			scanner.nextLine();
-
-			System.out.print("The following entries are for the address info.\nEnter the street number: ");
-			streetNo = scanner.nextInt();
-			scanner.nextLine();
+			while (invalid) {
+				try {
+					System.out.print("Enter the birthday (MM-dd-YYYY): ");
+					birthday = scanner.nextLine();
+					LocalDate.parse(birthday, formatter);
+					invalid = false;
+				} catch (java.time.format.DateTimeParseException e) {
+					System.out.println("***** Wrong input for birthday! Try again.");
+					invalid = true;
+				}
+			}
+			while (gwa < 1.0 || gwa > 3.0) {
+				try{
+					System.out.print("Enter the gwa: ");
+					gwa = scanner.nextFloat();
+					scanner.nextLine();
+					if(gwa < 1.0 || gwa > 3.0) {
+						System.out.println("***** Invalid GWA input!");
+					}
+				} catch (java.util.InputMismatchException e) {
+					System.out.println("***** Invalid GWA input!");
+					scanner.nextLine();
+				}
+			}
+			invalid = true;
+			while (invalid) {
+				try {
+					System.out.print("Enter the date hired (MM-dd-YYYY): ");
+					dateHired = scanner.nextLine();	
+					LocalDate.parse(dateHired, formatter);
+					invalid = false;
+				} catch (java.time.format.DateTimeParseException e) {
+					System.out.println("***** Wrong input for date hired! Try again.");
+					invalid = true;
+				}
+			}
+			while (currentlyEmployed != 1 && currentlyEmployed != 2) {
+				try{
+					System.out.print("Enter 1 if currently employed or 2 if not: ");
+					currentlyEmployed = scanner.nextInt();
+					scanner.nextLine();
+					if (currentlyEmployed != 1 && currentlyEmployed != 2) {
+						System.out.println("***** The value should only be 1 for true or 2 for false!");
+					}
+				} catch (java.util.InputMismatchException e) {
+					System.out.println("***** Invalid input!");
+					scanner.nextLine();
+				}
+			}
+			invalid = true;
+			while (invalid) {
+				try {
+					System.out.print("The following entries are for the address info.\nEnter the street number: ");
+					streetNo = scanner.nextInt();
+					scanner.nextLine();
+					invalid = false;
+				} catch (java.util.InputMismatchException e) {
+					System.out.println("***** Invalid street number input!");
+					scanner.nextLine();
+					invalid = true;
+				}
+			}
 			System.out.print("Enter the barangay: ");
 			barangay = scanner.nextLine();
 			System.out.print("Enter the municipality: ");
 			municipality = scanner.nextLine();
-			System.out.print("Enter the zip code: ");
-			zipCode = scanner.nextInt();
-			scanner.nextLine();
+			
+			invalid = true;
+			while (invalid) {
+				try {
+					System.out.print("Enter the zip code: ");
+					zipCode = scanner.nextInt();
+					scanner.nextLine();
+					invalid = false;
+				} catch (java.util.InputMismatchException e) {
+					System.out.println("***** Invalid zip code input!");
+					scanner.nextLine();
+					invalid = true;
+				}
+			}
 
 			System.out.print("The following entries are for the contact information.\nEnter the landline: ");
 			landline = scanner.nextLine();
@@ -86,6 +146,7 @@ public class Service {
 			roles.add(new Role(roleName));
 			persons.add(person);
 
+			personAddress.setPersons(persons);
 			role.setPersons(persons);
 			person.setRoles(roles);
 			
@@ -135,12 +196,11 @@ public class Service {
 		email = scanner.nextLine();
 
 		if (!update) {
+			contactInformation = new ContactInformation(landline, mobileNumber, email);
 			person = (Person) object;
-			person.getContactInformation().setLandline(landline);
-			person.getContactInformation().setMobileNumber(mobileNumber);
-			person.getContactInformation().setEmail(email);
-			person.getContactInformation().setPerson(person);
-			Dao.update(object);
+			person.setContactInformation(contactInformation);
+			contactInformation.setPerson(person);
+			Dao.update(person);
 		}
 		else {
 			contactInformation = (ContactInformation) object;

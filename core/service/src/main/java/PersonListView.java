@@ -77,15 +77,14 @@ public class PersonListView {
 									"\nDate Hired: " + person.getDateHired() +
 									"\nCurrently Employed: " + (person.getCurrentlyEmployed() ? "Yes" : "No") +
 									"\nContact Information -" +
-									"\n\tLandline: " + person.getContactInformation().getLandline() +
-									"\n\tMobile Number: " + person.getContactInformation().getMobileNumber() +
-									"\n\tEmail Address: " + person.getContactInformation().getEmail());	
+									"\n\tLandline: " + ((person.getContactInformation() == null) ? "" : person.getContactInformation().getLandline()) +
+									"\n\tMobile Number: " + ((person.getContactInformation() == null) ? "" : person.getContactInformation().getMobileNumber()) +
+									"\n\tEmail Address: " + ((person.getContactInformation() == null) ? "" : person.getContactInformation().getEmail()));	
 				List<Role> roles = new ArrayList<Role>(person.getRoles());
 				System.out.print("\nRoles: ");
 				roles.forEach(
 					(role) -> System.out.print(role.getName().trim() + " "));	
 			}
-		
 		}
 	}
 }
